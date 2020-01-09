@@ -318,9 +318,9 @@ public abstract class BasePayload extends ValueMap {
       return self();
     }
 
-    @NonNull
+    @Nullable
     public String getUserId() {
-      return assertNotNullOrEmpty(this.userId, "userId");
+      return this.userId;
     }
 
     abstract P realBuild(
