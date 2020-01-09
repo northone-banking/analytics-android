@@ -36,21 +36,17 @@ public class AliasPayload extends BasePayload {
   static final String PREVIOUS_ID_KEY = "previousId";
 
   @Private
-  AliasPayload(
-      @NonNull String messageId,
-      @NonNull Date timestamp,
-      @NonNull Map<String, Object> context,
-      @NonNull Map<String, Object> integrations,
-      @Nullable String userId,
-      @NonNull String anonymousId,
+  AliasPayload(@NonNull String messageId, @NonNull Date timestamp, @NonNull Map<String, Object> context,
+      @NonNull Map<String, Object> integrations, @Nullable String userId, @NonNull String anonymousId,
       @NonNull String previousId) {
     super(Type.alias, messageId, timestamp, context, integrations, userId, anonymousId);
     put(PREVIOUS_ID_KEY, previousId);
   }
 
   /**
-   * The previous ID for the user that you want to alias from, that you previously called identify
-   * with as their user ID, or the anonymous ID if you haven't identified the user yet.
+   * The previous ID for the user that you want to alias from, that you previously
+   * called identify with as their user ID, or the anonymous ID if you haven't
+   * identified the user yet.
    */
   public String previousId() {
     return getString(PREVIOUS_ID_KEY);
@@ -89,18 +85,13 @@ public class AliasPayload extends BasePayload {
     }
 
     @Override
-    protected AliasPayload realBuild(
-        @NonNull String messageId,
-        @NonNull Date timestamp,
-        @NonNull Map<String, Object> context,
-        @NonNull Map<String, Object> integrations,
-        @Nullable String userId,
+    protected AliasPayload realBuild(@NonNull String messageId, @NonNull Date timestamp,
+        @NonNull Map<String, Object> context, @NonNull Map<String, Object> integrations, @Nullable String userId,
         @NonNull String anonymousId) {
       assertNotNullOrEmpty(userId, "userId");
       assertNotNullOrEmpty(previousId, "previousId");
 
-      return new AliasPayload(
-          messageId, timestamp, context, integrations, userId, anonymousId, previousId);
+      return new AliasPayload(messageId, timestamp, context, integrations, userId, anonymousId, previousId);
     }
 
     @Override
