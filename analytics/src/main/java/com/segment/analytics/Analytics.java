@@ -740,7 +740,7 @@ public class Analytics {
     builder.anonymousId(contextCopy.traits().anonymousId());
     builder.integrations(options.integrations());
     String userId = builder.getUserId();
-    if (!isNullOrEmpty(userId)) {
+    if (isNullOrEmpty(userId)) {
       String cachedUserId = contextCopy.traits().userId();
       builder.userId(cachedUserId);
     }
